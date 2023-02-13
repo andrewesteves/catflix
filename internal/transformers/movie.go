@@ -14,13 +14,9 @@ func GroupUppercase(ctx context.Context, movies <-chan entities.Movie) <-chan en
 	go func() {
 		defer close(stream)
 
-		for movie := range movies {
+		for movie := range WithDone(ctx, movies) {
 			movie.Group = strings.ToUpper(movie.Group)
-			select {
-			case <-ctx.Done():
-				return
-			case stream <- movie:
-			}
+			stream <- movie
 		}
 	}()
 
@@ -34,13 +30,9 @@ func GetAge(ctx context.Context, movies <-chan entities.Movie) <-chan entities.M
 		defer close(stream)
 		currentYear := time.Now().Year()
 
-		for movie := range movies {
+		for movie := range WithDone(ctx, movies) {
 			movie.Age = currentYear - movie.Year
-			select {
-			case <-ctx.Done():
-				return
-			case stream <- movie:
-			}
+			stream <- movie
 		}
 	}()
 

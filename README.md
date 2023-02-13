@@ -1,7 +1,11 @@
 # CatFlix (Catálogo do Netflix)
 
-## Link do YouTube
+## Links do YouTube
+### Pipeline
 https://youtu.be/XXFWVJuEkN0
+
+### WithDone
+https://youtu.be/Cxnck4xlFPg
 
 ## Arquivo CSV
 https://www.kaggle.com/datasets
